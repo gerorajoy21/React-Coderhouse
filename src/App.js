@@ -1,13 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Tienda de Videojuegos y gaming</h1>
-      <p>Somos la mejor tienda online de Videojuegos de Argentina</p>
-    </div>
-  );
+// Components
+import NavBar from "./components/NavBar";
+import "./components/NavBar.css";
+
+let city = "Buenos Aires";
+
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <NavBar />
+        <h1 style={{ textAlign: "center"}}>
+          Tienda de Videojuegos
+        </h1>
+        <p style={{ textAlign: "center"}}>La mejor plataforma de videojeugos de {city}</p>
+      </div>
+    );
+  }
 }
 
 export default App;
