@@ -1,37 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 
-const ItemCount = () => {
-  const [isLogged, setIsLogged] = useState(true);
-  const [counter, setCounter] = useState(0);
+const ItemCount = ({stock=49, cantidad=1, nombre}) => {
 
+  const[itemStock, setItemStock] = useState(stock);
+  const[itemQuantity, setItemQuantity] = useState(cantidad);
 
-  const handleIncrement = () => {
-    setCounter(counter + 1);
-  };
+  const aumentarCantidad = () =>{
+    if (itemStock === 0) {
+        console.log('no hay mas unidades disponibles');
+    } else{
+      setItemQuantity(itemQuantity+1);
+      setItemStock(itemStock - 1);
+    }
+  }
 
-  const handleDecrement = () => {
-    setCounter(counter - 1);
-  };
+  const reducirCantidad = () =>{
+    if (itemStock === 0) {
+      console.log('ya no hay articulos');
+  } else{
+    setItemQuantity(itemQuantity - 1);
+    setItemStock(itemStock + 1);
+  }
+  }
 
-
-  const toggleIsLogged = () => {
-    setIsLogged(!isLogged);
-  };
-
-  useEffect(() => {
-    setTimeout(() => {
-      console.log("Gettin' Data");
-    }, 2000);
-  }, []);
 
   return (
-    <div className="ItemCount">
-      <h2>{counter}</h2>
-      <button onClick={handleIncrement}>Aumentar</button>
-      <button onClick={handleDecrement}>Disminuir</button><br></br>
-      <button onClick={toggleIsLogged}>Comprar</button>
+    <div className="counterContainer">
+      <div className="counter">
+          <h3>{nombre}</h3>
+          <span>El stock es: {itemStock}</span>
+          <section>
+            <button onClick={reducirCantidad}>-</button>
+            <p>{itemQuantity}</p>
+            <button onClick={aumentarCantidad}>+</button>
+          </section>
+      </div>
     </div>
-  );
-};
+  )
+}
 
 export default ItemCount;
