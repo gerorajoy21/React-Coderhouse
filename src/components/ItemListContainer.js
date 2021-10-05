@@ -1,8 +1,9 @@
 import React from 'react';
 import { Card, Image } from 'semantic-ui-react';
+import ItemCount from './ItemCount';
 
 const ItemListContainer = ({ img, juego, precio, description }) => (
-	<div className='UserCard d-flex justify-content-center'>
+	<div className='UserCard d-flex justify-content-center flex-column'>
 		<Card>
 			<Image src={img} wrapped ui={false} />
 			<Card.Content>
@@ -13,6 +14,9 @@ const ItemListContainer = ({ img, juego, precio, description }) => (
 				<Card.Description>{description}</Card.Description>
 			</Card.Content>
 		</Card>
+		<div>
+			<ItemCount/>
+		</div>
 	</div>
 );
 
